@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 教學與學習應用指南｜王正毅</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      background-color: #f8fafc;
+      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+  </style>
+</head>
+<body class="text-slate-700 overflow-x-clip">
+  <div id="app-layout" class="flex min-h-screen">
+    <div class="flex-1 min-w-0 flex flex-col">
+
+      <!-- 頂部導覽列 -->
+      <header class="sticky top-0 z-20 bg-white/85 backdrop-blur-md px-6 sm:px-10 py-3.5 border-b border-slate-200/80">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <button onclick="toggleSidebar()" aria-label="切換選單" class="p-2 -ml-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors">
+              <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
+            <span class="text-sm font-bold text-slate-900">AI 使用倫理與核心素養</span>
+          </div>
+          <a href="teacher-prompts.html" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-white hover:bg-teal-600 transition-colors">
+            <span>前往教師 Prompt 庫</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </header>
+
+      <main class="flex-1 px-6 sm:px-10 py-10 space-y-12">
+        <div class="max-w-4xl mx-auto space-y-12">
+
+          <!-- Hero 區塊 -->
+          <section class="relative overflow-hidden bg-slate-900 text-white rounded-3xl p-8 sm:p-10 shadow-lg">
+            <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-teal-500/20 blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-indigo-500/20 blur-3xl pointer-events-none"></div>
+            
+            <div class="relative z-10">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-teal-300 text-xs font-semibold mb-4">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                AI Literacy &amp; Ethics First
+              </span>
+              <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-4">
+                在開始使用 AI 之前：<br class="hidden sm:inline" />先建立正確的倫理與協作觀念
+              </h1>
+              <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+                生成式 AI 是強大的教學輔助與學習鷹架，但唯有建立在「學術誠信、隱私保護與批判查核」的基礎上，才能真正發揮教育價值。
+              </p>
+            </div>
+          </section>
+
+          <!-- AI 使用倫理四大核心原則 -->
+          <section>
+            <div class="mb-6">
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-900">教育現場的 AI 使用倫理四大原則</h2>
+              <p class="text-sm text-slate-500 mt-1">無論是教師備課或學生自學，建議共同遵守以下底線。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div class="bg-white/95 rounded-2xl p-6 border border-slate-200/90 shadow-xs">
+                <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center mb-4">
+                  <i data-lucide="lock" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 mb-2">1. 個人隱私與去識別化</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  切勿將學生的**真實姓名、學號、成績單、輔導紀錄或照片**直接貼進公開的 AI 對話框。使用前請先以「學生 A、座號 01」取代個資。
+                </p>
+              </div>
+
+              <div class="bg-white/95 rounded-2xl p-6 border border-slate-200/90 shadow-xs">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4">
+                  <i data-lucide="search-check" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 mb-2">2. 事實查核與幻覺警覺</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  AI 的本質是機率預測而非知識庫，可能會編造不存在的法規、數據或文獻。凡涉及**專業定義、年份與引用來源**，人類必須負起最終查證責任。
+                </p>
+              </div>
+
+              <div class="bg-white/95 rounded-2xl p-6 border border-slate-200/90 shadow-xs">
+                <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
+                  <i data-lucide="scale" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 mb-2">3. 透明揭露與學術誠信</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  將 AI 定位為「構思夥伴、語句潤飾或評量輔助」，而非代寫工具。在教案、簡報或作業中適度標註 AI 協作的範圍，維持學術透明。
+                </p>
+              </div>
+
+              <div class="bg-white/95 rounded-2xl p-6 border border-slate-200/90 shadow-xs">
+                <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mb-4">
+                  <i data-lucide="users" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 mb-2">4. 覺察偏見與多元尊重</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  AI 訓練資料可能隱含文化、性別或地域刻板印象。教師在採用 AI 生成的情境題與教材時，應主動審視內容是否符合多元與在地脈絡。
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 提示詞黃金公式 -->
+          <section class="bg-white/95 rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-xs">
+            <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-2">高品質提示詞的五個積木</h2>
+            <p class="text-sm text-slate-500 mb-5">掌握這個結構，就能把模糊的要求轉化為精準的教學產出：</p>
+            <div class="grid grid-cols-1 sm:grid-cols-5 gap-3 text-center">
+              <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+                <div class="text-xs font-bold text-teal-600 mb-1">01 角色</div>
+                <div class="text-xs text-slate-600">設定專業身分</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+                <div class="text-xs font-bold text-sky-600 mb-1">02 情境</div>
+                <div class="text-xs text-slate-600">年級與先備知識</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+                <div class="text-xs font-bold text-indigo-600 mb-1">03 任務</div>
+                <div class="text-xs text-slate-600">明確要產出什麼</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+                <div class="text-xs font-bold text-purple-600 mb-1">04 格式</div>
+                <div class="text-xs text-slate-600">表格、條列、題組</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+                <div class="text-xs font-bold text-rose-600 mb-1">05 限制</div>
+                <div class="text-xs text-slate-600">語氣、難度、字數</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 快速入口卡片 -->
+          <section class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <a href="teacher-prompts.html" class="group bg-white/95 rounded-2xl p-6 border border-slate-200 hover:border-teal-500 hover:shadow-md transition-all">
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold">For Teachers</span>
+                <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-400 group-hover:text-teal-600 transition-colors"></i>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-1">教師常用 AI Prompt 庫</h3>
+              <p class="text-xs sm:text-sm text-slate-500">涵蓋教案設計、雙語 CLIL、素養命題、差異化教材與親師溝通。</p>
+            </a>
+
+            <a href="student-prompts.html" class="group bg-white/95 rounded-2xl p-6 border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all">
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold">For Students</span>
+                <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors"></i>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-1">學生自主學習 Prompt 庫</h3>
+              <p class="text-xs sm:text-sm text-slate-500">蘇格拉底式提問家教、費曼學習法檢核與文獻結構拆解。</p>
+            </a>
+          </section>
+
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="menu.js"></script>
+</body>
+</html>
