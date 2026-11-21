@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>學生自主學習 AI Prompt 庫｜王正毅</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      background-color: #f8fafc;
+      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+  </style>
+</head>
+<body class="text-slate-700 overflow-x-clip">
+  <div id="app-layout" class="flex min-h-screen">
+    <div class="flex-1 min-w-0 flex flex-col">
+
+      <header class="sticky top-0 z-20 bg-white/85 backdrop-blur-md px-6 sm:px-10 py-3.5 border-b border-slate-200/80">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <button onclick="toggleSidebar()" aria-label="切換選單" class="p-2 -ml-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors">
+              <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
+            <span class="text-sm font-bold text-slate-900">學生自主學習 Prompt 庫</span>
+          </div>
+          <a href="teacher-prompts.html" class="text-xs font-medium text-teal-600 hover:text-teal-700">切換至教師庫 →</a>
+        </div>
+      </header>
+
+      <main class="flex-1 px-6 sm:px-10 py-10">
+        <div class="max-w-4xl mx-auto">
+
+          <div class="mb-8">
+            <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-semibold mb-3">For Students</span>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">學生自主學習 AI Prompt 庫</h1>
+            <p class="text-sm sm:text-base text-slate-600">
+              讓 AI 成為引導思考的家教而非代寫機器。輸入你想複習的主題，直接複製使用。
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs mb-6">
+            <label for="input-topic" class="block text-xs font-bold text-slate-700 mb-1.5">我想學習／複習的主題</label>
+            <input id="input-topic" type="text" value="全球化與核心邊陲理論" oninput="renderPrompts()"
+                   class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100" />
+          </div>
+
+          <div id="prompt-list" class="space-y-5"></div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const prompts = [
+      {
+        id: 's1', badge: '蘇格拉底家教', badgeStyle: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+        title: '蘇格拉底式提問引導（不直接給答案）',
+        text: '請扮演一位耐心的蘇格拉底式家教。我想徹底搞懂「{{topic}}」，請不要一次把所有解釋都給我，而是每次只問我一個引導性問題，根據我的回答給予回饋並逐步加深難度，直到我能用自己的話講清楚為止。現在請先問第一個問題。',
+        tip: '適用情境：考前觀念釐清、寫申論題前先理清邏輯脈絡。'
+      },
+      {
+        id: 's2', badge: '費曼學習法', badgeStyle: 'bg-purple-50 text-purple-700 border-purple-200',
+        title: '費曼學習法盲點檢核',
+        text: '我正在用費曼學習法複習「{{topic}}」。接下來我會用自己的話向你解釋這個概念，請你扮演一位嚴謹的審查員：指出我解釋中邏輯跳躍、模糊不清或有誤的地方，並給我可以補充的關鍵角度。準備好就請說「請開始解釋」。',
+        tip: '適用情境：檢驗自己是不是「真的懂了」，而不是只背下名詞。'
+      },
+      {
+        id: 's3', badge: '論文與閱讀拆解', badgeStyle: 'bg-teal-50 text-teal-700 border-teal-200',
+        title: '學術文章與長文結構拆解',
+        text: '以下是我正在閱讀關於「{{topic}}」的文章段落。請幫我整理：1. 作者的核心論點；2. 支持論點的關鍵證據或研究方法；3. 列出 3 個我可以進一步批判思考的問題。\n\n[在此貼上文章段落]',
+        tip: '倫理提醒：閱讀摘要僅供輔助理解，引用時仍須親自閱讀原文並正確標註出處。'
+      }
+    ];
+
+    function renderPrompts() {
+      const topic = document.getElementById('input-topic').value.trim() || '[主題]';
+      const list = document.getElementById('prompt-list');
+
+      list.innerHTML = prompts.map(item => {
+        const filled = item.text.replaceAll('{{topic}}', topic);
+        return `
+          <div class="bg-white/95 rounded-2xl p-6 border border-slate-200/90 shadow-xs hover:border-slate-300 transition-all">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-full border ${item.badgeStyle}">${item.badge}</span>
+              <button onclick="copyText('${item.id}', this)" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-medium hover:bg-indigo-600 transition-colors">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i><span>一鍵複製</span>
+              </button>
+            </div>
+            <h2 class="font-bold text-base sm:text-lg text-slate-900 mb-3">${item.title}</h2>
+            <div id="p-${item.id}" class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 text-sm text-slate-700 leading-relaxed font-mono whitespace-pre-wrap mb-3">${filled}</div>
+            <div class="flex items-start gap-2 text-xs text-slate-500 bg-slate-50/80 rounded-xl p-3 border border-slate-100">
+              <i data-lucide="lightbulb" class="w-3.5 h-3.5 text-indigo-600 shrink-0 mt-0.5"></i>
+              <span>${item.tip}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function copyText(id, btn) {
+      const content = document.getElementById('p-' + id).innerText;
+      navigator.clipboard.writeText(content).then(() => {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5"></i><span>已複製</span>';
+        btn.classList.replace('bg-slate-900', 'bg-emerald-600');
+        if (window.lucide) lucide.createIcons();
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.classList.replace('bg-emerald-600', 'bg-slate-900');
+          if (window.lucide) lucide.createIcons();
+        }, 1600);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', renderPrompts);
+  </script>
+  <script src="menu.js"></script>
+</body>
+</html>
