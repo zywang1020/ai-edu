@@ -56,6 +56,13 @@
                 </a>
               </li>
 
+              <li>
+                <a href="guidelines.html" data-page="guidelines.html" class="menu-link flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition-colors">
+                  <i data-lucide="book-open-check" class="w-4 h-4 text-amber-400"></i>
+                  <span>重要實務指引</span>
+                </a>
+              </li>
+
               <!-- 手風琴分類：提示詞實戰庫 -->
               <li class="pt-1">
                 <button onclick="toggleAccordion('acc-prompts', this)" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition-colors">
