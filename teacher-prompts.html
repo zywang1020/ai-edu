@@ -20,6 +20,7 @@
   <div id="app-layout" class="flex min-h-screen">
     <div class="flex-1 min-w-0 flex flex-col">
 
+      <!-- 頂部導覽列 -->
       <header class="sticky top-0 z-20 bg-white/85 backdrop-blur-md px-6 sm:px-10 py-3.5 border-b border-slate-200/80">
         <div class="max-w-4xl mx-auto flex items-center justify-between">
           <div class="flex items-center gap-3">
@@ -28,7 +29,7 @@
             </button>
             <span class="text-sm font-bold text-slate-900">教師常用 AI Prompt 實戰庫</span>
           </div>
-          <a href="index.html" class="text-xs font-medium text-slate-500 hover:text-teal-600">回倫理總覽</a>
+          <a href="guidelines.html" class="text-xs font-medium text-teal-600 hover:text-teal-700">查看重要實務指引 →</a>
         </div>
       </header>
 
@@ -90,8 +91,8 @@
       },
       {
         id: 't3', cat: 'bilingual', badge: '雙語／EMI', badgeStyle: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-        title: 'CLIL 雙語教材與課室英語鷹架生成',
-        text: '你是一位專精於 CLIL（學科內容與語言整合學習）的雙語教師。請針對「{{grade}}」學生，撰寫一段約 150 字、符合 CEFR B1 程度的英文短文介紹「{{topic}}」。接著列出 5 個核心學科關鍵字（附中文解釋），以及 5 句老師在課堂上可用來引導討論的課室英語句型。',
+        title: '雙語教材與課室英語鷹架生成',
+        text: '你是一位經驗豐富的雙語教師。請針對「{{grade}}」學生，撰寫一段約 150 字、符合 CEFR B1 程度的英文短文介紹「{{topic}}」。接著列出 5 個核心學科關鍵字（附中文解釋），以及 5 句老師在課堂上可用來引導討論的課室英語句型。',
         tip: '進階追問：請提供學生在小組討論時可以照著說的 3 個英文句型框架（Sentence Starters）。'
       },
       {
