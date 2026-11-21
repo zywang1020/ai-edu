@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>教師常用 AI Prompt 庫｜王正毅</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      background-color: #f8fafc;
+      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+  </style>
+</head>
+<body class="text-slate-700 overflow-x-clip">
+  <div id="app-layout" class="flex min-h-screen">
+    <div class="flex-1 min-w-0 flex flex-col">
+
+      <header class="sticky top-0 z-20 bg-white/85 backdrop-blur-md px-6 sm:px-10 py-3.5 border-b border-slate-200/80">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <button onclick="toggleSidebar()" aria-label="切換選單" class="p-2 -ml-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors">
+              <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
+            <span class="text-sm font-bold text-slate-900">教師常用 AI Prompt 實戰庫</span>
+          </div>
+          <a href="index.html" class="text-xs font-medium text-slate-500 hover:text-teal-600">回倫理總覽</a>
+        </div>
+      </header>
+
+      <main class="flex-1 px-6 sm:px-10 py-10">
+        <div class="max-w-4xl mx-auto">
+
+          <div class="mb-8">
+            <span class="inline-block px-3 py-1 rounded-full bg-teal-50 border border-teal-100 text-teal-700 text-xs font-semibold mb-3">For Teachers</span>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">教師常用 AI Prompt 實戰庫</h1>
+            <p class="text-sm sm:text-base text-slate-600">
+              在下方輸入你的「任教年級」與「教學主題」，所有模板會即時自動組裝，點擊右上角即可一鍵複製。
+            </p>
+          </div>
+
+          <!-- 即時填空面板 -->
+          <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs mb-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="input-grade" class="block text-xs font-bold text-slate-700 mb-1.5">任教年級／對象</label>
+              <input id="input-grade" type="text" value="高中一年級" oninput="renderPrompts()"
+                     class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100" />
+            </div>
+            <div>
+              <label for="input-topic" class="block text-xs font-bold text-slate-700 mb-1.5">教學單元／主題</label>
+              <input id="input-topic" type="text" value="都市熱島效應與氣候調適" oninput="renderPrompts()"
+                     class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100" />
+            </div>
+          </div>
+
+          <!-- 分類篩選 -->
+          <div class="flex flex-wrap items-center gap-2 mb-6">
+            <button onclick="setCat('all')" data-cat="all" class="cat-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all">全部 (6)</button>
+            <button onclick="setCat('lesson')" data-cat="lesson" class="cat-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all">備課與教案</button>
+            <button onclick="setCat('bilingual')" data-cat="bilingual" class="cat-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all">雙語／EMI</button>
+            <button onclick="setCat('assess')" data-cat="assess" class="cat-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all">命題與評量</button>
+            <button onclick="setCat('admin')" data-cat="admin" class="cat-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all">行政與親師溝通</button>
+          </div>
+
+          <!-- Prompt 卡片列表 -->
+          <div id="prompt-list" class="space-y-5"></div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const prompts = [
+      {
+        id: 't1', cat: 'lesson', badge: '備課與教案', badgeStyle: 'bg-teal-50 text-teal-700 border-teal-200',
+        title: '50 分鐘探究式教案設計（含教學流程表）',
+        text: '你是一位經驗豐富的資深教師。請針對「{{grade}}」學生，設計一堂 50 分鐘關於「{{topic}}」的探究式課程教案。請以 Markdown 表格呈現教學流程（包含時間分配、引起動機、核心探究活動、總結反思），並附上 3 個能引發高層次思考的核心提問。',
+        tip: '進階追問：請將核心探究活動改寫為 4 人一組的合作學習任務，並設計每位組員的分工角色。'
+      },
+      {
+        id: 't2', cat: 'lesson', badge: '差異化教學', badgeStyle: 'bg-sky-50 text-sky-700 border-sky-200',
+        title: '三層次差異化教材改寫（基礎／標準／進階）',
+        text: '請針對「{{grade}}」的「{{topic}}」單元，設計三種不同難度版本的閱讀短文（各約 200 字）：1. 基礎版（多用生活比喻、附重點詞彙解釋）；2. 標準版（符合課綱程度）；3. 進階版（加入數據思辨或跨領域延伸問題），以滿足班級內的差異化需求。',
+        tip: '進階追問：請為「基礎版」補充一張心智圖的文字架構，幫助學習扶助學生抓重點。'
+      },
+      {
+        id: 't3', cat: 'bilingual', badge: '雙語／EMI', badgeStyle: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+        title: 'CLIL 雙語教材與課室英語鷹架生成',
+        text: '你是一位專精於 CLIL（學科內容與語言整合學習）的雙語教師。請針對「{{grade}}」學生，撰寫一段約 150 字、符合 CEFR B1 程度的英文短文介紹「{{topic}}」。接著列出 5 個核心學科關鍵字（附中文解釋），以及 5 句老師在課堂上可用來引導討論的課室英語句型。',
+        tip: '進階追問：請提供學生在小組討論時可以照著說的 3 個英文句型框架（Sentence Starters）。'
+      },
+      {
+        id: 't4', cat: 'assess', badge: '命題與評量', badgeStyle: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+        title: '素養導向情境題組（含詳解與誘答分析）',
+        text: '請扮演資深命題教師，針對「{{grade}}」的「{{topic}}」設計 1 組素養導向情境題（包含約 150 字的生活情境題幹，以及 2 題單選題、1 題簡答題）。請附上標準答案、評分標準，並說明每個錯誤選項是為了測出學生的哪一種「迷思概念」。',
+        tip: '進階追問：請檢查這組題目是否有「不看題幹就能作答」的漏洞，並協助修正。'
+      },
+      {
+        id: 't5', cat: 'assess', badge: '評量規準', badgeStyle: 'bg-purple-50 text-purple-700 border-purple-200',
+        title: '4 等第評量規準（Rubric）表格',
+        text: '請針對「{{grade}}」關於「{{topic}}」的「口頭報告／海報發表」，設計一份 4 等第（優秀、良好、尚可、待改進）的評量規準（Rubric）表格。評量向度需包含：概念正確性、資料分析能力、視覺呈現與口語表達，描述須具體可觀察。',
+        tip: '進階追問：請將這份 Rubric 改寫成「學生同儕互評表」，語氣改為淺顯易懂的第一人稱檢核句。'
+      },
+      {
+        id: 't6', cat: 'admin', badge: '行政與親師溝通', badgeStyle: 'bg-rose-50 text-rose-700 border-rose-200',
+        title: '溫和具建設性的親師溝通訊息（去個資版）',
+        text: '請扮演一位溫暖且專業的導師。我想傳訊息給家長，反映「學生 A」近期在「{{topic}}」單元的學習狀況（例如：課堂參與積極，但作業繳交較不穩定）。請幫我撰寫一則約 150 字、採用「三明治回饋法（肯定→具體建議→鼓勵合作）」的聯絡簿／LINE 訊息草稿。',
+        tip: '倫理提醒：貼入實際情境時，請務必使用代稱（如學生 A），切勿輸入真實姓名與個資。'
+      }
+    ];
+
+    let currentCat = 'all';
+
+    function setCat(cat) {
+      currentCat = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        if (btn.dataset.cat === cat) {
+          btn.classList.add('bg-slate-900', 'text-white');
+          btn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200', 'hover:bg-slate-50');
+        } else {
+          btn.classList.remove('bg-slate-900', 'text-white');
+          btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200', 'hover:bg-slate-50');
+        }
+      });
+      renderPrompts();
+    }
+
+    function renderPrompts() {
+      const grade = document.getElementById('input-grade').value.trim() || '[年級]';
+      const topic = document.getElementById('input-topic').value.trim() || '[主題]';
+      const list = document.getElementById('prompt-list');
+
+      const filtered = currentCat === 'all' ? prompts : prompts.filter(p => p.cat === currentCat);
+
+      list.innerHTML = filtered.map(item => {
+        const filled = item.text.replaceAll('{{grade}}', grade).replaceAll('{{topic}}', topic);
+        return `
+          <div class="bg-white/95 rounded-2xl p-6 border border-slate-200/90 shadow-xs hover:border-slate-300 transition-all">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-full border ${item.badgeStyle}">${item.badge}</span>
+              <button onclick="copyText('${item.id}', this)" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-medium hover:bg-teal-600 transition-colors">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i><span>一鍵複製</span>
+              </button>
+            </div>
+            <h2 class="font-bold text-base sm:text-lg text-slate-900 mb-3">${item.title}</h2>
+            <div id="p-${item.id}" class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 text-sm text-slate-700 leading-relaxed font-mono whitespace-pre-wrap mb-3">${filled}</div>
+            <div class="flex items-start gap-2 text-xs text-slate-500 bg-slate-50/80 rounded-xl p-3 border border-slate-100">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-teal-600 shrink-0 mt-0.5"></i>
+              <span>${item.tip}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function copyText(id, btn) {
+      const content = document.getElementById('p-' + id).innerText;
+      navigator.clipboard.writeText(content).then(() => {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5"></i><span>已複製</span>';
+        btn.classList.replace('bg-slate-900', 'bg-emerald-600');
+        if (window.lucide) lucide.createIcons();
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.classList.replace('bg-emerald-600', 'bg-slate-900');
+          if (window.lucide) lucide.createIcons();
+        }, 1600);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => setCat('all'));
+  </script>
+  <script src="menu.js"></script>
+</body>
+</html>
