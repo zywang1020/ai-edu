@@ -1,182 +1,32 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>重要實務指引｜AI 教學與學習應用指南</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    body {
-      font-family: 'Inter', 'Noto Sans TC', sans-serif;
-      background-color: #f8fafc;
-      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-      background-size: 24px 24px;
-    }
-  </style>
-</head>
-<body class="text-slate-700 overflow-x-clip">
-  <div id="app-layout" class="flex min-h-screen">
-    <div class="flex-1 min-w-0 flex flex-col">
-
-      <!-- 頂部導覽列 -->
-      <header class="sticky top-0 z-20 bg-white/85 backdrop-blur-md px-6 sm:px-10 py-3.5 border-b border-slate-200/80">
-        <div class="max-w-4xl mx-auto flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <button onclick="toggleSidebar()" aria-label="切換選單" class="p-2 -ml-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors">
-              <i data-lucide="menu" class="w-5 h-5"></i>
-            </button>
-            <span class="text-sm font-bold text-slate-900">重要實務指引</span>
-          </div>
-          <a href="teacher-prompts.html" class="text-xs font-medium text-teal-600 hover:text-teal-700">前往教師 Prompt 庫 →</a>
-        </div>
-      </header>
-
-      <main class="flex-1 px-6 sm:px-10 py-10">
-        <div class="max-w-4xl mx-auto space-y-10">
-
-          <!-- 頁首標題 -->
-          <div>
-            <span class="inline-block px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-semibold mb-3">Practical Guidelines</span>
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">教學與學習的 AI 重要實務指引</h1>
-            <p class="text-sm sm:text-base text-slate-600">
-              將抽象的 AI 倫理轉化為課堂上可直接執行的規範、查核步驟與揭露範本。
-            </p>
-          </div>
-
-          <!-- 指引 1：課堂 AI 使用紅綠燈分級 -->
+<!-- 指引 5：官方重要參考文件與指引 -->
           <section class="bg-white/95 rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-xs">
             <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-1 flex items-center gap-2">
-              <i data-lucide="traffic-cone" class="w-5 h-5 text-amber-500"></i>
-              一、課堂與作業「AI 紅綠燈」分級指引
+              <i data-lucide="landmark" class="w-5 h-5 text-sky-600"></i>
+              五、官方重要參考文件與指引
             </h2>
-            <p class="text-xs sm:text-sm text-slate-500 mb-5">教師可在出作業前明確標示等級，讓學生清楚知道哪些環節可以使用 AI。</p>
+            <p class="text-xs sm:text-sm text-slate-500 mb-5">彙整國內教育主管機關與大專校院發布之生成式 AI 教學與倫理規範（點擊將另開視窗前往官方頁面）。</p>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <!-- 紅燈 -->
-              <div class="rounded-2xl p-5 bg-rose-50/70 border border-rose-200/80">
-                <div class="flex items-center gap-2 mb-2">
-                  <span class="w-3 h-3 rounded-full bg-rose-500"></span>
-                  <h3 class="font-bold text-rose-900 text-sm">紅燈：完全禁止</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- 文件卡片 1：教育部 -->
+              <a href="https://pads.moe.edu.tw/download2.php" target="_blank" rel="noopener noreferrer"
+                 class="group flex items-start justify-between gap-3 p-5 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-teal-400 hover:bg-white transition-all">
+                <div>
+                  <span class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-md bg-sky-100 text-sky-700 mb-2">教育部</span>
+                  <h3 class="font-bold text-sm text-slate-900 group-hover:text-teal-700 transition-colors">中小學數位教學指引與相關文件</h3>
+                  <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">教育部推動中小學數位學習精進方案之官方下載專區，包含數位教學指引與 AI 融入課堂參考文件。</p>
                 </div>
-                <p class="text-xs text-rose-800/90 leading-relaxed">
-                  適用於基礎能力檢核、隨堂測驗或個人反思寫作。須完全由學生獨立完成，不得使用任何生成式 AI 輔助。
-                </p>
-              </div>
+                <i data-lucide="external-link" class="w-4 h-4 text-slate-400 group-hover:text-teal-600 shrink-0 mt-1"></i>
+              </a>
 
-              <!-- 黃燈 -->
-              <div class="rounded-2xl p-5 bg-amber-50/70 border border-amber-200/80">
-                <div class="flex items-center gap-2 mb-2">
-                  <span class="w-3 h-3 rounded-full bg-amber-500"></span>
-                  <h3 class="font-bold text-amber-900 text-sm">黃燈：有限度輔助</h3>
+              <!-- 文件卡片 2：臺師大教發中心 -->
+              <a href="https://ctld.ntnu.edu.tw/generative_ai" target="_blank" rel="noopener noreferrer"
+                 class="group flex items-start justify-between gap-3 p-5 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-teal-400 hover:bg-white transition-all">
+                <div>
+                  <span class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-700 mb-2">國立臺灣師範大學</span>
+                  <h3 class="font-bold text-sm text-slate-900 group-hover:text-teal-700 transition-colors">生成式 AI 教學與學習指引專區</h3>
+                  <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">臺師大教學發展中心彙整之大專校院生成式 AI 課程設計、評量建議與學術倫理參考指引。</p>
                 </div>
-                <p class="text-xs text-amber-800/90 leading-relaxed">
-                  允許用於「腦力激盪、大綱構思、語句潤飾或文法檢查」，但核心論點須為原創，且須於文末揭露使用方式。
-                </p>
-              </div>
-
-              <!-- 綠燈 -->
-              <div class="rounded-2xl p-5 bg-emerald-50/70 border border-emerald-200/80">
-                <div class="flex items-center gap-2 mb-2">
-                  <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-                  <h3 class="font-bold text-emerald-900 text-sm">綠燈：鼓勵深度協作</h3>
-                </div>
-                <p class="text-xs text-emerald-800/90 leading-relaxed">
-                  鼓勵將 AI 作為專案夥伴（如程式除錯、資料視覺化、模擬對話），並將「提問紀錄與修正歷程」納入評量的一部分。
-                </p>
-              </div>
+                <i data-lucide="external-link" class="w-4 h-4 text-slate-400 group-hover:text-teal-600 shrink-0 mt-1"></i>
+              </a>
             </div>
           </section>
-
-          <!-- 指引 2：AI 輸出事實查核 4 步驟 -->
-          <section class="bg-white/95 rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-xs">
-            <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-1 flex items-center gap-2">
-              <i data-lucide="list-checks" class="w-5 h-5 text-teal-600"></i>
-              二、AI 輸出內容查核清單（使用前必看）
-            </h2>
-            <p class="text-xs sm:text-sm text-slate-500 mb-5">在將 AI 生成的教材、題目或報告內容放進課堂前，建議快速核對以下四點：</p>
-
-            <ul class="space-y-3 text-sm text-slate-700">
-              <li class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-100">
-                <span class="font-bold text-teal-600 shrink-0">01</span>
-                <span><strong>核對專有名詞與數據：</strong>年份、統計數字、法規條文與學術文獻最容易出現幻覺，務必回查原始資料或政府開放平台。</span>
-              </li>
-              <li class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-100">
-                <span class="font-bold text-teal-600 shrink-0">02</span>
-                <span><strong>檢查在地語境與課綱用語：</strong>確認專有名詞是否符合臺灣現行課綱（例如避免直接沿用中國大陸或歐美未在地化的地理／學科譯名）。</span>
-              </li>
-              <li class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-100">
-                <span class="font-bold text-teal-600 shrink-0">03</span>
-                <span><strong>確認去識別化：</strong>回頭檢查對話紀錄，確保沒有不小心貼入學生姓名、聯絡方式或未公開的校內機密文件。</span>
-              </li>
-              <li class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-100">
-                <span class="font-bold text-teal-600 shrink-0">04</span>
-                <span><strong>審視難度與偏見：</strong>檢查生成的案例是否過於單一、帶有刻板印象，或超出該年級學生的閱讀負荷。</span>
-              </li>
-            </ul>
-          </section>
-
-          <!-- 指引 3：提示詞進階迭代心法 -->
-          <section class="bg-white/95 rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-xs">
-            <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-              <i data-lucide="wand-2" class="w-5 h-5 text-indigo-600"></i>
-              三、讓 AI 更好用的三個迭代技巧
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-              <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                <h3 class="font-bold text-slate-900 mb-1.5">要求「先問問題」</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">在指令最後加上：「在開始生成前，請先問我 3 個能讓結果更精準的問題。」能大幅減少來回修改。</p>
-              </div>
-              <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                <h3 class="font-bold text-slate-900 mb-1.5">善用「反例與限制」</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">明確告訴 AI「不要做什麼」，例如：「不要使用過於空泛的口號」、「避免使用超過 30 字的長句」。</p>
-              </div>
-              <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                <h3 class="font-bold text-slate-900 mb-1.5">請 AI 自我審查</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">產出初稿後，再追問：「請扮演嚴格的評審／資深教師，指出上述內容的 3 個缺點並改寫。」</p>
-              </div>
-            </div>
-          </section>
-
-          <!-- 指引 4：AI 協作揭露聲明範例（一鍵複製） -->
-          <section class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-md">
-            <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-              <h2 class="text-lg font-bold flex items-center gap-2">
-                <i data-lucide="file-text" class="w-5 h-5 text-teal-400"></i>
-                四、AI 協作揭露聲明範例（可直接引用）
-              </h2>
-              <button onclick="copyDisclosure(this)" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-teal-500 text-white text-xs font-medium transition-colors">
-                <i data-lucide="copy" class="w-3.5 h-3.5"></i><span>複製聲明</span>
-              </button>
-            </div>
-            <p class="text-xs text-slate-400 mb-4">適用情境：教案、簡報、課堂報告或作業文末，展現透明負責的學術態度。</p>
-            <div id="disclosure-text" class="p-4 rounded-2xl bg-slate-800/90 border border-slate-700 text-xs sm:text-sm text-slate-200 leading-relaxed font-mono">
-【AI 輔助使用聲明】本作品／教材在撰寫過程中，曾使用生成式 AI 工具（如 Gemini）協助進行「初步架構發想、語句潤飾與雙語詞彙對照」。所有核心觀點、數據分析與最終內容皆由作者親自查核、修訂並負完全責任。
-            </div>
-          </section>
-
-        </div>
-      </main>
-    </div>
-  </div>
-
-  <script>
-    function copyDisclosure(btn) {
-      const text = document.getElementById('disclosure-text').innerText.trim();
-      navigator.clipboard.writeText(text).then(() => {
-        const orig = btn.innerHTML;
-        btn.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5"></i><span>已複製</span>';
-        btn.classList.add('bg-emerald-600');
-        if (window.lucide) lucide.createIcons();
-        setTimeout(() => {
-          btn.innerHTML = orig;
-          btn.classList.remove('bg-emerald-600');
-          if (window.lucide) lucide.createIcons();
-        }, 1600);
-      });
-    }
-  </script>
-  <script src="menu.js"></script>
-</body>
-</html>
